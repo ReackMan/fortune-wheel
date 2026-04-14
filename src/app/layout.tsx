@@ -1,9 +1,10 @@
-import { ReactNode } from 'react'
+import { ReactNode, Suspense } from 'react'
 
 import { Metadata } from 'next'
 import { Alumni_Sans, Kelly_Slab } from 'next/font/google'
 
 import { StoreProvider } from '@/app/StoreProvider'
+import { Loader } from '@/shared/components/loader/Loader'
 import { Footer } from '@/widgets/footer/ui/Footer'
 import { Header } from '@/widgets/header/ui/Header'
 
@@ -33,11 +34,13 @@ export default function RootLayout({
   return (
     <html className={`${alumniSans.variable} ${kellySlab.variable} h-full antialiased`} lang={'en'}>
       <body className={' mx-4 md:mx-6 lg:mx-12 xl:mx-13 min-h-full flex flex-col items-center'}>
-        <StoreProvider>
-          <Header />
-          {children}
-          <Footer />
-        </StoreProvider>
+        <Suspense fallback={<Loader />}>
+          <StoreProvider>
+            <Header />
+            {children}
+            <Footer />
+          </StoreProvider>
+        </Suspense>
       </body>
     </html>
   )
