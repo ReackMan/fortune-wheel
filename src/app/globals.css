@@ -1,26 +1,96 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-alumni-sans: 'Alumni Sans', sans-serif;
+  --font-kelly-slab: 'Kelly Slab', serif;
+  --font-size: 16px;
+
+  --background: #1e2025;
+  --foreground: #fdfdfd;
+  --accent: #ff0633;
+  --secondary: #2e3139;
+  --card: #c3c2bd;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-secondary: var(--secondary);
+  --color-card: var(--card);
+
+  --shadow-m3-elev-5: 0 8px 12px 6px rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+
+  --font-alumni: var(--font-alumni-sans);
+  --font-kelly: var(--font-kelly-slab);
+
+  --breakpoint-2xl: 80rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-sm: 375px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    box-sizing: border-box;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  html {
+    font-size: var(--font-size);
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-alumni-sans), sans-serif;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-kelly), serif;
+  }
+
+  .custom-container {
+    @apply w-full max-w-[343px] sm:max-w-[45rem] md:max-w-[58rem] lg:max-w-[73.5rem];
+  }
+
+  .alumni-semi-24 {
+    @apply text-2xl leading-6 font-alumni font-semibold;
+  }
+  .alumni-semi-32 {
+    @apply text-[32px] leading-8 font-alumni font-semibold;
+  }
+  .alumni-semi-44 {
+    @apply text-[44px] leading-11 font-alumni font-semibold;
+  }
+
+  .animate-rotation {
+    animation: rotation 1s linear infinite;
+  }
+
+  .animate-rotation-reverse {
+    animation: rotation 0.5s linear infinite reverse;
+  }
+
+  .tracking-light {
+    @apply tracking-[0.01em];
+  }
+
+  .card-border-1 {
+    @apply border border-secondary rounded-lg;
+  }
+  .card-border-2 {
+    @apply border-2 border-secondary rounded-lg;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
